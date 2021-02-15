@@ -9,13 +9,14 @@ RUN mkdir -p $HOMEBREW_ENSEMBL_MOONSHINE_ARCHIVE
 ENV HOMEBREW_NO_AUTO_UPDATE 1
 
 # Turn off analytics and tap brew & Ensembl repositories
+# I need to patch to use openjdk instead of jdk. Not using -i so it can work on Mac and Linux
 RUN brew analytics off \
 && brew tap denji/nginx \
 && brew tap ensembl/ensembl \
 && brew tap ensembl/external \
 && brew tap ensembl/moonshine \
-&& brew tap ensembl/web \
-&& brew tap ensembl/cask
+&& brew tap ensembl/cask \
+&& sed -i 's/jdk/openjdk/g' /home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/ensembl/homebrew-cask/pre-flight.rb
 
 RUN brew install ensembl/cask/pre-flight \
 && brew install ensembl/cask/basic-dependencies \
