@@ -16,7 +16,8 @@ RUN brew analytics off \
 && brew tap ensembl/external \
 && brew tap ensembl/moonshine \
 && brew tap ensembl/cask \
-&& sed -i 's/jdk/openjdk/g' /home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/ensembl/homebrew-cask/pre-flight.rb
+&& sed -i 's/jdk/openjdk/g' /home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/ensembl/homebrew-cask/pre-flight.rb \
+&& sed -i '/mysql-cluster/d' /home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/ensembl/homebrew-cask/perl-clibs.rb
 
 RUN brew install ensembl/cask/pre-flight \
 && brew install ensembl/cask/basic-dependencies \
