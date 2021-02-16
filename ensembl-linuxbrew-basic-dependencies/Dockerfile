@@ -17,7 +17,9 @@ RUN brew analytics off \
 && brew tap ensembl/moonshine \
 && brew tap ensembl/cask \
 && sed -i 's/jdk/openjdk/g' /home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/ensembl/homebrew-cask/pre-flight.rb \
-&& sed -i '/mysql-cluster/d;s/:because =>/because:/g' /home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/ensembl/homebrew-external/percona-client.rb
+&& sed -i '/postgres-client/d' /home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/ensembl/homebrew-cask/perl-clibs.rb \
+&& sed -i 's/ "mysql-cluster",//;s/:because =>/because:/g' /home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/ensembl/homebrew-external/percona-client.rb \
+&& sed -i 's/installed/any_version_installed/' /home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/ensembl/homebrew-external/kent.rb
 
 RUN brew install ensembl/cask/pre-flight \
 && brew install ensembl/cask/basic-dependencies \
