@@ -18,10 +18,9 @@ RUN brew analytics off \
 && brew tap ensembl/cask \
 && git -C /home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/ensembl/homebrew-cask checkout feature/codon_cluster \
 && git -C /home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/ensembl/homebrew-ensembl checkout feature/codon_cluster \
-&& git -C /home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/ensembl/homebrew-external checkout feature/codon_cluster \
+&& git -C /home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/ensembl/homebrew-external checkout feature/codon_cluster
 
 RUN brew install ensembl/cask/pre-flight \
 && brew install ensembl/cask/basic-dependencies \
-&& brew install ensembl/cask/perl-clibs \
 && brew cleanup \
 && rm -rf /home/linuxbrew/.cpan /home/linuxbrew/.cache/Homebrew
