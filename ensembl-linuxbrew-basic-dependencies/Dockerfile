@@ -1,5 +1,5 @@
 # Docker image with all necessary Homebrew and Ensembl taps
-FROM linuxbrew/brew:3.0.0
+FROM linuxbrew/brew:3.1.0
 
 # Setup moonshine
 ENV HOMEBREW_ENSEMBL_MOONSHINE_ARCHIVE /home/linuxbrew/ENSEMBL_MOONSHINE_ARCHIVE
@@ -16,10 +16,9 @@ RUN brew analytics off \
 && brew tap ensembl/external \
 && brew tap ensembl/moonshine \
 && brew tap ensembl/cask \
-&& sed -i 's/jdk/openjdk/g' /home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/ensembl/homebrew-cask/pre-flight.rb \
-&& sed -i '/postgres-client/d' /home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/ensembl/homebrew-cask/perl-clibs.rb \
-&& sed -i 's/ "mysql-cluster",//;s/:because =>/because:/g' /home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/ensembl/homebrew-external/percona-client.rb \
-&& sed -i 's/installed/any_version_installed/' /home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/ensembl/homebrew-external/kent.rb
+&& git -C /home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/ensembl/homebrew-cask checkout feature/codon_cluster \
+&& git -C /home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/ensembl/homebrew-ensembl checkout feature/codon_cluster \
+&& git -C /home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/ensembl/homebrew-external checkout feature/codon_cluster \
 
 RUN brew install ensembl/cask/pre-flight \
 && brew install ensembl/cask/basic-dependencies \
