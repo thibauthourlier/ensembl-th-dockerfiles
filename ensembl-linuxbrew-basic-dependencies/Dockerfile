@@ -3,7 +3,6 @@ FROM linuxbrew/brew:3.1.0
 
 # Setup moonshine
 ENV HOMEBREW_ENSEMBL_MOONSHINE_ARCHIVE /home/linuxbrew/ENSEMBL_MOONSHINE_ARCHIVE
-USER linuxbrew
 
 RUN mkdir -p $HOMEBREW_ENSEMBL_MOONSHINE_ARCHIVE
 
@@ -25,4 +24,5 @@ RUN brew analytics off \
 RUN brew install ensembl/cask/pre-flight \
 && brew install ensembl/cask/basic-dependencies \
 && brew cleanup \
-&& rm -rf /home/linuxbrew/.cpan /home/linuxbrew/.cache/Homebrew
+&& rm -rf /home/linuxbrew/.cpan /home/linuxbrew/.cache/Homebrew \
+&& chmod -R o+w /home/linuxbrew/.linuxbrew
