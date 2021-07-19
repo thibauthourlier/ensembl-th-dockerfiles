@@ -3,6 +3,8 @@ FROM linuxbrew/brew:3.1.0
 
 # Setup moonshine
 ENV HOMEBREW_ENSEMBL_MOONSHINE_ARCHIVE /home/linuxbrew/ENSEMBL_MOONSHINE_ARCHIVE
+USER linuxbrew
+
 RUN mkdir -p $HOMEBREW_ENSEMBL_MOONSHINE_ARCHIVE
 
 # Turning off autoupdate
